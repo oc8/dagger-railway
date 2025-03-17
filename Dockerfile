@@ -9,4 +9,4 @@ WORKDIR /app
 ENV PORT=${PORT:-8080}
 EXPOSE ${PORT}
 
-CMD ["sh", "-c", "dagger engine && dagger up"]
+CMD ["dagger", "run", "--port", "${PORT}", "loop"]
