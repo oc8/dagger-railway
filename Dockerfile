@@ -1,6 +1,6 @@
-FROM golang:1.21-alpine
+FROM docker:dind
 
-RUN apk add --no-cache docker-cli curl git
+RUN apk add --no-cache curl git
 
 RUN curl -L https://dl.dagger.io/dagger/install.sh | sh
 
@@ -9,4 +9,4 @@ WORKDIR /app
 ENV PORT=${PORT:-8080}
 EXPOSE ${PORT}
 
-CMD ["dagger", "run", "loop"]
+ENTRYPOINT ["dockerd-entrypoint.sh"]
